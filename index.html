@@ -67,6 +67,35 @@
       width: 30px;
       height: 30px;
     }
+    .project-logo {
+  width: 45px;
+  height: 45px;
+  object-fit: contain;
+  border-radius: 12px;
+  border: 2px solid #dee2e6;
+  padding: 5px;
+  background: #ffffff;
+}
+
+.project-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-radius: 15px;
+}
+
+.project-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+.card-body {
+  padding: 1.2rem;
+}
+
+.card-text {
+  font-size: 0.95rem;
+  color: #495057;
+}
+
   </style>
 </head>
 <body>
@@ -88,7 +117,7 @@
     <!-- Resume Section -->
     <section id="resume" class="mb-5">
       <h2>Resume</h2>
-      <a href="your-cv.pdf" target="_blank" class="btn btn-success mb-3">Download My CV</a>
+      <a href="cv.html" target="_blank" class="btn btn-success mb-3">My CV</a>
       <ul class="timeline">
         <li><strong>2023-Present:</strong> Instructor at Summit Edu Care</li>
         <li><strong>2022:</strong> Developer of Meal Counting System</li>
@@ -97,21 +126,71 @@
     </section>
 
     <!-- Projects -->
-    <section id="projects" class="mb-5">
-      <h2>Projects</h2>
-      <div class="project">
-        <h4>Summit Meal System</h4>
-        <p>A powerful Google Apps Script-based meal tracker with PDF vouchers, charts, and email automation.</p>
+   <!-- Projects -->
+<section id="projects" class="mb-5">
+    <h2 class="text-center mb-4 fw-bold text-primary">✨ Featured Projects ✨</h2>
+    <div class="row g-4">
+  
+      <!-- Single Project Card -->
+      <div class="col-md-6 col-lg-4">
+        <div class="card project-card border-0 shadow-sm h-100">
+          <div class="p-3 d-flex align-items-center gap-3">
+            <img src="meal.jpg" class="project-logo" alt="Meal Logo" />
+            <h5 class="mb-0 text-primary">Summit Meal System</h5>
+          </div>
+          <div class="card-body">
+            <p class="card-text">Google Apps Script-powered meal manager with voucher PDF, charts, and smart emails.</p>
+            <a href="https://docs.google.com/spreadsheets/d/1vcyB21bLBMylQbAkaxCSN5yE1MoZDi97EtvF6vXYFpI/edit?usp=sharing" target="_blank" class="btn btn-outline-primary">🔗 View Project</a>
+          </div>
+        </div>
       </div>
-      <div class="project">
-        <h4>Seat Plan Generator</h4>
-        <p>Java Swing-based application to dynamically create seating arrangements.</p>
+  
+      <!-- Seat Plan Generator -->
+      <div class="col-md-6 col-lg-4">
+        <div class="card project-card border-0 shadow-sm h-100">
+          <div class="p-3 d-flex align-items-center gap-3">
+            <img src="seatplan.png" class="project-logo" alt="Seat Logo" />
+            <h5 class="mb-0 text-success">Seat Plan Generator</h5>
+          </div>
+          <div class="card-body">
+            <p class="card-text">Java Swing app that generates searchable seating arrangements dynamically.</p>
+            <a href="https://github.com/mossarrafhossainrobin/seat-plan-generator" target="_blank" class="btn btn-outline-success">🔗 View Project</a>
+          </div>
+        </div>
       </div>
-      <div class="project">
-        <h4>Shoe Inventory System</h4>
-        <p>A full-stack web system for managing stock, sales, and profit/loss of a shoe business.</p>
+  
+      <!-- Instructor Role -->
+      <div class="col-md-6 col-lg-4">
+        <div class="card project-card border-0 shadow-sm h-100">
+          <div class="p-3 d-flex align-items-center gap-3">
+            <img src="summit.png" class="project-logo" alt="Summit Logo" />
+            <h5 class="mb-0 text-info">Instructor at Summit Edu Care</h5>
+          </div>
+          <div class="card-body">
+            <p class="card-text">Teaching Java, DSA, DBMS, and automation using real-world projects & competitive prep.</p>
+            <a href="https://www.facebook.com/SummitEduCareOfficial" target="_blank" class="btn btn-outline-info">🔗 Visit Page</a>
+          </div>
+        </div>
       </div>
-    </section>
+  
+      <!-- Shoe Inventory System -->
+      <div class="col-md-6 col-lg-4">
+        <div class="card project-card border-0 shadow-sm h-100">
+          <div class="p-3 d-flex align-items-center gap-3">
+            <img src="elite.png" class="project-logo" alt="Shoe Inventory" />
+            <h5 class="mb-0 text-danger">Shoe Inventory System</h5>
+          </div>
+          <div class="card-body">
+            <p class="card-text">Track stock, manage profit/loss, debts & insights based on importer and product details.</p>
+            <a href="https://mossarrafhossainrobin.github.io/EliteFootWear/" target="_blank" class="btn btn-outline-danger">🔗 Explore Project</a>
+          </div>
+        </div>
+      </div>
+  
+    </div>
+  </section>
+  
+      
 
     <!-- Skills -->
     <section id="skills" class="mb-5">
