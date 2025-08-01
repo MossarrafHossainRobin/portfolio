@@ -1,254 +1,944 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mossarraf Hossain Robin | Portfolio</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  <link rel="stylesheet" href="style.css" />
-  <style>
-    body {
-      background: linear-gradient(to right, #f8f9fa, #e9ecef);
-      color: #212529;
-    }
-    .profile-pic {
-      width: 150px;
-      height: 150px;
-      object-fit: cover;
-      border-radius: 50%;
-      border: 4px solid #0d6efd;
-      margin-bottom: 20px;
-    }
-    .btn {
-      border-radius: 50px;
-    }
-    .social-links a {
-      display: inline-block;
-      background: #ffffff;
-      border-radius: 50%;
-      padding: 10px;
-      margin: 0 10px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-      transition: transform 0.3s, background 0.3s;
-    }
-    .social-links a:hover {
-      transform: scale(1.2);
-      background: #0d6efd;
-    }
-    .social-links a:hover img {
-      filter: brightness(0) invert(1);
-    }
-    .social-links img {
-      width: 30px;
-      height: 30px;
-      border-radius: 50%;
-    }
-    .timeline li {
-      margin: 10px 0;
-    }
-    .contact-info {
-      font-weight: bold;
-      margin-bottom: 15px;
-    }
-    .whatsapp-float {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background-color: #25d366;
-      color: white;
-      border-radius: 50%;
-      padding: 15px;
-      z-index: 100;
-      text-align: center;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-    }
-    .whatsapp-float img {
-      width: 30px;
-      height: 30px;
-    }
-    .project-logo {
-  width: 45px;
-  height: 45px;
-  object-fit: contain;
-  border-radius: 12px;
-  border: 2px solid #dee2e6;
-  padding: 5px;
-  background: #ffffff;
-}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mossarraf Hossain Robin | Portfolio</title>
+    <!-- Google Fonts: Poppins for content, Space Mono for a futuristic touch -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <!-- Bootstrap CSS for modals -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom styles for animations, gradients, and glassmorphism not available in Tailwind */
+        :root {
+            --primary-color: #00e5ff;
+            --secondary-color: #007bff;
+            --dark-bg: #10121a;
+            --card-bg: rgba(255, 255, 255, 0.05);
+            --border-color: rgba(255, 255, 255, 0.1);
+            --text-color: #e0e0e0;
+            --section-bg: #1e2029;
+            --hover-bg: rgba(255, 255, 255, 0.1);
+        }
 
-.project-card {
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  border-radius: 15px;
-}
+        .light-mode {
+            --primary-color: #007bff;
+            --secondary-color: #00e5ff;
+            --dark-bg: #f5f7fa;
+            --card-bg: rgba(255, 255, 255, 0.8);
+            --border-color: rgba(0, 0, 0, 0.1);
+            --text-color: #2d3748;
+            --section-bg: #e2e8f0;
+            --hover-bg: rgba(0, 0, 0, 0.05);
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--text-color);
+            transition: background-color 0.5s, color 0.5s;
+        }
 
-.project-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
-}
+        /* Custom scrollbar styling */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
 
-.card-body {
-  padding: 1.2rem;
-}
+        ::-webkit-scrollbar-track {
+            background: var(--dark-bg);
+        }
 
-.card-text {
-  font-size: 0.95rem;
-  color: #495057;
-}
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(45deg, var(--secondary-color), var(--primary-color));
+            border-radius: 5px;
+        }
 
-  </style>
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(45deg, #00c6ff, #007bff);
+        }
+
+        /* Sticky nav with backdrop blur effect */
+        .sticky-nav {
+            backdrop-filter: blur(10px);
+            background-color: #13151b; /* A darker, more distinct background */
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Added a box shadow for visibility */
+        }
+
+        .light-mode .sticky-nav {
+            background-color: #ebedef;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Glassmorphism card effect */
+        .glass-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            backdrop-filter: blur(8px);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .glass-modal .modal-content {
+            background-color: rgba(16, 18, 26, 0.9);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+        .light-mode .glass-modal .modal-content {
+            background-color: rgba(245, 247, 250, 0.9);
+            border: 1px solid rgba(0, 0, 0, 0.15);
+        }
+
+        .modal-header .btn-close {
+            filter: invert(1);
+        }
+        .light-mode .modal-header .btn-close {
+            filter: none;
+        }
+
+
+        /* Custom gradient buttons */
+        .btn-primary-gradient {
+            background: linear-gradient(45deg, var(--secondary-color), var(--primary-color));
+        }
+
+        .btn-primary-gradient:hover {
+            box-shadow: 0 6px 15px rgba(0, 123, 255, 0.4);
+            transform: translateY(-3px);
+        }
+        .btn-secondary-outline {
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+        }
+        .btn-secondary-outline:hover {
+            background-color: var(--primary-color);
+            color: var(--dark-bg);
+            box-shadow: 0 6px 15px rgba(0, 229, 255, 0.4);
+        }
+
+        /* Section title custom underline */
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, transparent, var(--primary-color), transparent);
+            border-radius: 2px;
+        }
+
+        /* Project card overlay and hover effect */
+        .project-card {
+            transition: all 0.3s ease-in-out;
+            transform-style: preserve-3d;
+        }
+        .project-card:hover {
+            transform: rotateY(5deg) rotateX(2deg) scale(1.02);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .project-card .card-img-overlay {
+            opacity: 0;
+            background: rgba(0, 0, 0, 0.7);
+            transition: opacity 0.3s ease-in-out;
+            border-radius: 0.75rem; /* rounded-xl equivalent */
+        }
+        .project-card:hover .card-img-overlay {
+            opacity: 1;
+        }
+        
+        /* Particle canvas styling */
+        #particles-js {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+        
+        /* Fade-in and slide-up animations on scroll */
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .fade-in-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .loading-spinner {
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top: 4px solid #fff;
+            width: 24px;
+            height: 24px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
 </head>
-<body>
-  <div class="container py-5">
-    <!-- Hero Section -->
-    <section id="home" class="text-center mb-5">
-      <img src="own.jpg" alt="Robin Photo" class="profile-pic" />
-      <h1 class="mt-3">Mossarraf Hossain Robin</h1>
-      <p class="lead">Developer | Educator | Innovator</p>
-      <a href="#contact" class="btn btn-primary">Hire Me</a>
-    </section>
 
-    <!-- About Me -->
-    <section id="about" class="mb-5">
-      <h2>About Me</h2>
-      <p>I’m a passionate tech enthusiast who builds web tools, automation scripts, and educates students in programming and problem solving. I love making technology simple and useful for real-world problems.</p>
-    </section>
+<body class="bg-[var(--dark-bg)] text-[var(--text-color)] font-['Poppins'] leading-relaxed pt-14">
+    <!-- Header/Navbar -->
+    <nav id="navbar" class="navbar navbar-expand-lg navbar-dark fixed-top sticky-nav shadow-lg transition-all duration-400 z-50">
+        <div class="container mx-auto px-4 py-2">
+            <a class="navbar-brand text-2xl font-bold tracking-wider text-[var(--primary-color)] font-['Space Mono']" href="#">Mossarraf Hossain Robin</a>
+            
+            <div class="flex items-center gap-4">
+                <!-- Theme Switcher Button -->
+                <button id="theme-toggle" class="p-2 rounded-full transition-colors duration-300 hover:bg-[var(--hover-bg)]" aria-label="Toggle theme">
+                    <i class="fa-solid fa-moon text-xl text-[var(--primary-color)]"></i>
+                </button>
+                <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
+            
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav gap-2">
+                    <li class="nav-item">
+                        <a class="nav-link text-[var(--text-color)] font-semibold relative px-4 py-2 transition-all duration-300 hover:text-white hover:bg-[var(--hover-bg)] rounded-lg" aria-current="page" href="#top">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-[var(--text-color)] font-semibold relative px-4 py-2 transition-all duration-300 hover:text-white hover:bg-[var(--hover-bg)] rounded-lg" href="#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-[var(--text-color)] font-semibold relative px-4 py-2 transition-all duration-300 hover:text-white hover:bg-[var(--hover-bg)] rounded-lg" href="#projects">Projects</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-[var(--text-color)] font-semibold relative px-4 py-2 transition-all duration-300 hover:text-white hover:bg-[var(--hover-bg)] rounded-lg" href="#contact">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 
-    <!-- Resume Section -->
-    <section id="resume" class="mb-5">
-      <h2>Resume</h2>
-      <a href="cv.html" target="_blank" class="btn btn-success mb-3">My CV</a>
-      <ul class="timeline">
-        <li><strong>2023-Present:</strong> Instructor at Summit Edu Care</li>
-        <li><strong>2022:</strong> Developer of Meal Counting System</li>
-        <li><strong>2021:</strong> Java, Database & Google Apps Script Projects</li>
-      </ul>
-    </section>
+    <!-- Main Content Container -->
+    <div class="container mx-auto mt-10 px-4">
+        <!-- Hero Section -->
+        <header id="top" class="relative overflow-hidden text-center text-[var(--text-color)] py-20 md:py-32 glass-card rounded-3xl shadow-2xl">
+            <!-- Particle.js Canvas -->
+            <div id="particles-js"></div>
+            <div class="relative z-10 p-4">
+                <h1 class="text-4xl md:text-6xl font-bold tracking-tight transform-gpu transition-transform duration-500" data-parallax-speed="0.2">Hello, I'm <span class="text-[var(--primary-color)]">Mossarraf Hossain Robin</span></h1>
+                <p class="text-lg md:text-xl leading-snug mt-4 font-['Space Mono'] text-gray-300 transform-gpu transition-transform duration-500" data-parallax-speed="0.1">A passionate web developer specializing in building dynamic and responsive web applications.</p>
+                <div class="mt-8 flex justify-center gap-4">
+                    <a href="#projects" class="btn-primary-gradient text-white px-6 py-3 font-semibold rounded-full shadow-lg transition-all duration-300 hover:translate-y-[-3px] hover:shadow-xl">View Projects</a>
+                    <a href="#contact" class="btn-secondary-outline px-6 py-3 font-semibold rounded-full transition-all duration-300 hover:bg-blue-500 hover:text-white hover:border-blue-500">Get in Touch</a>
+                </div>
+            </div>
+        </header>
 
-    <!-- Projects -->
-   <!-- Projects -->
-<section id="projects" class="mb-5">
-    <h2 class="text-center mb-4 fw-bold text-primary">✨ Featured Projects ✨</h2>
-    <div class="row g-4">
-  
-      <!-- Single Project Card -->
-      <div class="col-md-6 col-lg-4">
-        <div class="card project-card border-0 shadow-sm h-100">
-          <div class="p-3 d-flex align-items-center gap-3">
-            <img src="meal.jpg" class="project-logo" alt="Meal Logo" />
-            <h5 class="mb-0 text-primary">Summit Meal System</h5>
-          </div>
-          <div class="card-body">
-            <p class="card-text">Google Apps Script-powered meal manager with voucher PDF, charts, and smart emails.</p>
-            <a href="https://docs.google.com/spreadsheets/d/1vcyB21bLBMylQbAkaxCSN5yE1MoZDi97EtvF6vXYFpI/edit?usp=sharing" target="_blank" class="btn btn-outline-primary">🔗 View Project</a>
-          </div>
-        </div>
-      </div>
-  
-      <!-- Seat Plan Generator -->
-      <div class="col-md-6 col-lg-4">
-        <div class="card project-card border-0 shadow-sm h-100">
-          <div class="p-3 d-flex align-items-center gap-3">
-            <img src="seatplan.png" class="project-logo" alt="Seat Logo" />
-            <h5 class="mb-0 text-success">Seat Plan Generator</h5>
-          </div>
-          <div class="card-body">
-            <p class="card-text">Java Swing app that generates searchable seating arrangements dynamically.</p>
-            <a href="https://github.com/mossarrafhossainrobin/seat-plan-generator" target="_blank" class="btn btn-outline-success">🔗 View Project</a>
-          </div>
-        </div>
-      </div>
-  
-      <!-- Instructor Role -->
-      <div class="col-md-6 col-lg-4">
-        <div class="card project-card border-0 shadow-sm h-100">
-          <div class="p-3 d-flex align-items-center gap-3">
-            <img src="summit.png" class="project-logo" alt="Summit Logo" />
-            <h5 class="mb-0 text-info">Instructor at Summit Edu Care</h5>
-          </div>
-          <div class="card-body">
-            <p class="card-text">Teaching Java, DSA, DBMS, and automation using real-world projects & competitive prep.</p>
-            <a href="https://www.facebook.com/SummitEduCareOfficial" target="_blank" class="btn btn-outline-info">🔗 Visit Page</a>
-          </div>
-        </div>
-      </div>
-  
-      <!-- Shoe Inventory System -->
-      <div class="col-md-6 col-lg-4">
-        <div class="card project-card border-0 shadow-sm h-100">
-          <div class="p-3 d-flex align-items-center gap-3">
-            <img src="elite.png" class="project-logo" alt="Shoe Inventory" />
-            <h5 class="mb-0 text-danger">Shoe Inventory System</h5>
-          </div>
-          <div class="card-body">
-            <p class="card-text">Track stock, manage profit/loss, debts & insights based on importer and product details.</p>
-            <a href="https://mossarrafhossainrobin.github.io/EliteFootWear/" target="_blank" class="btn btn-outline-danger">🔗 Explore Project</a>
-          </div>
-        </div>
-      </div>
-  
+        <hr class="my-24 h-[2px] border-none bg-gradient-to-r from-transparent via-gray-700 to-transparent fade-in-up">
+
+        <!-- About Section -->
+        <section id="about" class="about-section text-center py-5 fade-in-up">
+            <h2 class="section-title text-4xl font-bold relative inline-block pb-3 mb-12">👨‍💻 About Me</h2>
+            <div class="flex justify-center flex-col md:flex-row items-center gap-12">
+                <div class="w-full md:w-1/3 flex justify-center fade-in-up">
+                    <!-- Profile Picture -->
+                    <img src="https://placehold.co/400x400/1e1e1e/f8f9fa?text=Your+Photo" alt="Mossarraf Hossain Robin" class="rounded-full shadow-lg border-4 border-[var(--primary-color)] hover:scale-105 transition-transform duration-300">
+                </div>
+                <div class="w-full md:w-2/3 text-left fade-in-up">
+                    <p class="text-lg leading-relaxed mb-4">
+                        Hello! My name is Mossarraf Hossain Robin, and I am a web developer with a passion for creating beautiful and functional web experiences. I love tackling complex problems and building intuitive solutions. My journey in web development began with a fascination for how technology can solve real-world problems.
+                    </p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
+                        <div>
+                            <h3 class="text-2xl font-semibold mt-2 mb-4 text-[var(--primary-color)]">My Skills</h3>
+                            <ul class="list-disc list-inside text-lg text-[var(--text-color)] ml-4 space-y-2">
+                                <li>JavaScript, React, Node.js, Express.js</li>
+                                <li>HTML, CSS, Tailwind CSS, Bootstrap</li>
+                                <li>Git, GitHub, VS Code</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-semibold mt-2 mb-4 text-[var(--primary-color)]">Experience</h3>
+                            <p class="text-lg leading-relaxed text-[var(--text-color)]">
+                                I have 2 years of experience building responsive and dynamic web applications. My work has focused on creating seamless user experiences and efficient, maintainable codebases. I'm always eager to learn new technologies and improve my skills.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <hr class="my-24 h-[2px] border-none bg-gradient-to-r from-transparent via-gray-700 to-transparent fade-in-up">
+
+        <!-- Projects Section -->
+        <section id="projects" class="projects-section py-5 fade-in-up">
+            <h2 class="section-title text-center text-4xl font-bold relative inline-block pb-3 mb-12">📂 My Projects</h2>
+            <div class="flex justify-center flex-wrap gap-3 my-4 fade-in-up">
+                <button class="filter-btn active glass-card text-[var(--text-color)] border-none rounded-full px-5 py-2 transition-all duration-300 hover:bg-gradient-to-r hover:from-[var(--secondary-color)] hover:to-[var(--primary-color)] hover:border-blue-500 hover:scale-105" data-filter="all">All</button>
+                <button class="filter-btn glass-card text-[var(--text-color)] border-none rounded-full px-5 py-2 transition-all duration-300 hover:bg-gradient-to-r hover:from-[var(--secondary-color)] hover:to-[var(--primary-color)] hover:border-blue-500 hover:scale-105" data-filter="web-app">Web Apps</button>
+                <button class="filter-btn glass-card text-[var(--text-color)] border-none rounded-full px-5 py-2 transition-all duration-300 hover:bg-gradient-to-r hover:from-[var(--secondary-color)] hover:to-[var(--primary-color)] hover:border-blue-500 hover:scale-105" data-filter="non-profit">Non-Profit</button>
+                <button class="filter-btn glass-card text-[var(--text-color)] border-none rounded-full px-5 py-2 transition-all duration-300 hover:bg-gradient-to-r hover:from-[var(--secondary-color)] hover:to-[var(--primary-color)] hover:border-blue-500 hover:scale-105" data-filter="educational">Educational</button>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 project-container mt-8">
+                <!-- Project Card 1: Elite Footwear -->
+                <div class="project-item block fade-in-up" data-categories="web-app">
+                    <div class="project-card glass-card rounded-3xl overflow-hidden shadow-lg h-full flex flex-col group">
+                        <!-- Project Image and Overlay -->
+                        <div class="relative">
+                               <img src="https://placehold.co/600x400/1e1e1e/f8f9fa?text=Elite+Footwear" alt="Elite Footwear Project" class="w-full h-auto object-cover rounded-t-xl">
+                            <div class="card-img-overlay absolute inset-0 rounded-xl flex items-center justify-center p-4 transition-opacity duration-300">
+                                <div class="text-center">
+                                    <h6 class="text-white text-lg font-semibold">Tech Stack</h6>
+                                    <div class="mt-2 flex flex-wrap justify-center gap-2 font-['Space Mono']">
+                                        <span class="glass-card text-white text-xs px-3 py-1 rounded-full border-none">JavaScript</span>
+                                        <span class="glass-card text-white text-xs px-3 py-1 rounded-full border-none">HTML5</span>
+                                        <span class="glass-card text-white text-xs px-3 py-1 rounded-full border-none">CSS3</span>
+                                        <span class="glass-card text-white text-xs px-3 py-1 rounded-full border-none">Bootstrap</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-6 flex flex-col h-full">
+                            <h5 class="text-2xl font-bold text-[var(--primary-color)]">Elite Footwear</h5>
+                            <div class="mt-2 mb-2 flex flex-wrap gap-2">
+                                <span class="bg-gray-700 text-white text-xs px-3 py-1 rounded-full">Web App</span>
+                                <span class="bg-blue-300 text-black text-xs px-3 py-1 rounded-full">Inventory</span>
+                            </div>
+                            <p class="text-sm text-gray-400 flex-grow">A dynamic inventory management system with profit/loss,
+                                debt, and tracking features built using JavaScript and Web technologies.</p>
+                            <div class="flex gap-2 mt-4">
+                                <a href="https://github.com/MossarrafHossainRobin/elitefootwear" target="_blank"
+                                    class="btn-primary-gradient text-white px-4 py-2 text-sm font-semibold rounded-full flex-grow text-center"
+                                    aria-label="Visit Elite Footwear Project Repository" onclick="event.stopPropagation();">🔗 Visit Repo</a>
+                                <button class="btn-secondary-outline px-4 py-2 text-sm font-semibold rounded-full flex-grow text-center"
+                                    data-bs-toggle="modal" data-bs-target="#eliteFootwearModal"
+                                    aria-label="View Elite Footwear Details">ℹ️ Details</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project Card 2: Prottoy Foundation -->
+                <div class="project-item block fade-in-up" data-categories="non-profit">
+                    <div class="project-card glass-card rounded-3xl overflow-hidden shadow-lg h-full flex flex-col group">
+                        <!-- Project Image and Overlay -->
+                        <div class="relative">
+                            <img src="https://placehold.co/600x400/1e1e1e/f8f9fa?text=Prottoy+Foundation" alt="Prottoy Foundation Project" class="w-full h-auto object-cover rounded-t-xl">
+                            <div class="card-img-overlay absolute inset-0 rounded-xl flex items-center justify-center p-4 transition-opacity duration-300">
+                                <div class="text-center">
+                                    <h6 class="text-white text-lg font-semibold">Tech Stack</h6>
+                                    <div class="mt-2 flex flex-wrap justify-center gap-2 font-['Space Mono']">
+                                        <span class="glass-card text-white text-xs px-3 py-1 rounded-full border-none">Bootstrap</span>
+                                        <span class="glass-card text-white text-xs px-3 py-1 rounded-full border-none">HTML5</span>
+                                        <span class="glass-card text-white text-xs px-3 py-1 rounded-full border-none">CSS3</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-6 flex flex-col h-full">
+                            <h5 class="text-2xl font-bold text-[var(--primary-color)]">Prottoy Foundation</h5>
+                            <div class="mt-2 mb-2 flex flex-wrap gap-2">
+                                <span class="bg-gray-700 text-white text-xs px-3 py-1 rounded-full">Non-Profit</span>
+                                <span class="bg-blue-300 text-black text-xs px-3 py-1 rounded-full">Education</span>
+                            </div>
+                            <p class="text-sm text-gray-400 flex-grow">A visually appealing and responsive website for a
+                                non-profit educational initiative using Bootstrap, HTML, and CSS.</p>
+                            <div class="flex gap-2 mt-4">
+                                <a href="https://github.com/MossarrafHossainRobin/prottoy-foundation" target="_blank"
+                                    class="btn-primary-gradient text-white px-4 py-2 text-sm font-semibold rounded-full flex-grow text-center"
+                                    aria-label="Visit Prottoy Foundation Project Repository" onclick="event.stopPropagation();">🔗 Visit Repo</a>
+                                <button class="btn-secondary-outline px-4 py-2 text-sm font-semibold rounded-full flex-grow text-center"
+                                    data-bs-toggle="modal" data-bs-target="#prottoyFoundationModal"
+                                    aria-label="View Prottoy Foundation Details">ℹ️ Details</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project Card 3: Line Coding Visualizer -->
+                <div class="project-item block fade-in-up" data-categories="educational">
+                    <div class="project-card glass-card rounded-3xl overflow-hidden shadow-lg h-full flex flex-col group">
+                        <!-- Project Image and Overlay -->
+                        <div class="relative">
+                            <img src="https://placehold.co/600x400/1e1e1e/f8f9fa?text=Line+Coding+Visualizer" alt="Line Coding Visualizer Project" class="w-full h-auto object-cover rounded-t-xl">
+                            <div class="card-img-overlay absolute inset-0 rounded-xl flex items-center justify-center p-4 transition-opacity duration-300">
+                                <div class="text-center">
+                                    <h6 class="text-white text-lg font-semibold">Tech Stack</h6>
+                                    <div class="mt-2 flex flex-wrap justify-center gap-2 font-['Space Mono']">
+                                        <span class="glass-card text-white text-xs px-3 py-1 rounded-full border-none">JavaScript</span>
+                                        <span class="glass-card text-white text-xs px-3 py-1 rounded-full border-none">HTML5</span>
+                                        <span class="glass-card text-white text-xs px-3 py-1 rounded-full border-none">CSS3</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-6 flex flex-col h-full">
+                            <h5 class="text-2xl font-bold text-[var(--primary-color)]">Line Coding Visualizer</h5>
+                            <div class="mt-2 mb-2 flex flex-wrap gap-2">
+                                <span class="bg-gray-700 text-white text-xs px-3 py-1 rounded-full">Educational</span>
+                                <span class="bg-blue-300 text-black text-xs px-3 py-1 rounded-full">Visualizer</span>
+                            </div>
+                            <p class="text-sm text-gray-400 flex-grow">A tool for visualizing digital encoding schemes such as
+                                NRZ, Manchester, etc., for educational purposes.</p>
+                            <div class="flex gap-2 mt-4">
+                                <a href="https://github.com/MossarrafHossainRobin/Bit-by-Bit-Line-Coding-Visualizer" target="_blank"
+                                    class="btn-primary-gradient text-white px-4 py-2 text-sm font-semibold rounded-full flex-grow text-center"
+                                    aria-label="Visit Line Coding Visualizer Project Repository" onclick="event.stopPropagation();">🔗 Visit Repo</a>
+                                <button class="btn-secondary-outline px-4 py-2 text-sm font-semibold rounded-full flex-grow text-center"
+                                    data-bs-toggle="modal" data-bs-target="#lineCodingModal"
+                                    aria-label="View Line Coding Visualizer Details">ℹ️ Details</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project Card 4: OneBite -->
+                <div class="project-item block fade-in-up" data-categories="web-app">
+                    <div class="project-card glass-card rounded-3xl overflow-hidden shadow-lg h-full flex flex-col group">
+                        <!-- Project Image and Overlay -->
+                        <div class="relative">
+                            <img src="https://placehold.co/600x400/1e1e1e/f8f9fa?text=OneBite" alt="OneBite Project" class="w-full h-auto object-cover rounded-t-xl">
+                            <div class="card-img-overlay absolute inset-0 rounded-xl flex items-center justify-center p-4 transition-opacity duration-300">
+                                <div class="text-center">
+                                    <h6 class="text-white text-lg font-semibold">Tech Stack</h6>
+                                    <div class="mt-2 flex flex-wrap justify-center gap-2 font-['Space Mono']">
+                                        <span class="glass-card text-white text-xs px-3 py-1 rounded-full border-none">HTML5</span>
+                                        <span class="glass-card text-white text-xs px-3 py-1 rounded-full border-none">CSS3</span>
+                                        <span class="glass-card text-white text-xs px-3 py-1 rounded-full border-none">JavaScript</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-6 flex flex-col h-full">
+                            <h5 class="text-2xl font-bold text-[var(--primary-color)]">OneBite</h5>
+                            <div class="mt-2 mb-2 flex flex-wrap gap-2">
+                                <span class="bg-gray-700 text-white text-xs px-3 py-1 rounded-full">Web App</span>
+                                <span class="bg-blue-300 text-black text-xs px-3 py-1 rounded-full">Food Delivery</span>
+                            </div>
+                            <p class="text-sm text-gray-400 flex-grow">A modern, minimalist website built for a food delivery
+                                startup. Clean UI with responsive layout.</p>
+                            <div class="flex gap-2 mt-4">
+                                <a href="#" target="_blank"
+                                    class="btn-primary-gradient text-white px-4 py-2 text-sm font-semibold rounded-full flex-grow text-center"
+                                    aria-label="Visit OneBite Project Repository" onclick="event.stopPropagation();">🔗 Visit Project</a>
+                                <button class="btn-secondary-outline px-4 py-2 text-sm font-semibold rounded-full flex-grow text-center"
+                                    data-bs-toggle="modal" data-bs-target="#oneBiteModal"
+                                    aria-label="View OneBite Details">ℹ️ Details</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modals for project details -->
+            <!-- Elite Footwear Modal -->
+            <div class="modal fade" id="eliteFootwearModal" tabindex="-1" aria-labelledby="eliteFootwearModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content glass-modal text-[var(--text-color)] border border-gray-700 rounded-xl">
+                        <div class="modal-header border-b border-gray-700">
+                            <h5 class="modal-title font-bold text-[var(--primary-color)]" id="eliteFootwearModalLabel">Elite Footwear Details</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <h4 class="text-xl font-semibold mb-2">Project Overview</h4>
+                            <p>This is a dynamic inventory management system designed specifically for a shoe retail business. It provides a comprehensive solution for tracking stock, managing finances, and monitoring business performance in real-time. The system helps the owner make informed decisions by providing clear insights into sales, debts, and profits.</p>
+                            
+                            <h4 class="text-xl font-semibold mt-6 mb-2">Key Features</h4>
+                            <ul class="list-disc list-inside space-y-2">
+                                <li>**Real-time Inventory Tracking:** Easily add, update, and remove products with details like size, color, and quantity.</li>
+                                <li>**Financial Dashboard:** View a live dashboard of total profit/loss, current debts, and daily sales.</li>
+                                <li>**Customer & Supplier Management:** Keep a database of customers and suppliers to track transactions and outstanding payments.</li>
+                                <li>**Responsive Design:** The interface is optimized for both desktop and mobile use, allowing for management on the go.</li>
+                            </ul>
+
+                            <h4 class="text-xl font-semibold mt-6 mb-2">Technical Breakdown</h4>
+                            <p>The application is built entirely using **vanilla JavaScript, HTML5, and CSS3** without any major frameworks. This provided a great opportunity to focus on fundamental web development principles. The user interface is styled with **Bootstrap** for a clean, responsive layout, and custom CSS was used for unique design elements.</p>
+
+                            <h4 class="text-xl font-semibold mt-6 mb-2">Problem & Solution</h4>
+                            <p>The business owner needed a simple yet powerful way to move away from manual record-keeping. The solution provides a centralized, digital system that automates calculations and provides an instant overview of the business's financial health, saving time and reducing human error.</p>
+
+                            <div class="mt-8 flex flex-col items-center">
+                                <button id="elaborate-elite-footwear" class="btn-primary-gradient text-white px-4 py-2 font-semibold rounded-full flex items-center gap-2 mb-4">
+                                    <span id="elite-footwear-text">✨ Elaborate on Project Details</span>
+                                    <div id="elite-footwear-spinner" class="loading-spinner hidden"></div>
+                                </button>
+                                <p id="elite-footwear-gemini-output" class="text-sm italic text-gray-400 mt-2 text-left w-full"></p>
+                            </div>
+                        </div>
+                        <div class="modal-footer border-t border-gray-700">
+                            <button type="button" class="btn-secondary-outline" data-bs-dismiss="modal">Close</button>
+                            <a href="https://elitefootwear.wuaze.com/" target="_blank"
+                                class="btn-primary-gradient" onclick="event.stopPropagation();">Visit Project</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Prottoy Foundation Modal -->
+            <div class="modal fade" id="prottoyFoundationModal" tabindex="-1" aria-labelledby="prottoyFoundationModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content glass-modal text-[var(--text-color)] border border-gray-700 rounded-xl">
+                        <div class="modal-header border-b border-gray-700">
+                            <h5 class="modal-title font-bold text-[var(--primary-color)]" id="prottoyFoundationModalLabel">Prottoy Foundation Details</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <h4 class="text-xl font-semibold mb-2">Project Overview</h4>
+                            <p>This is a modern, responsive website built for the Prottoy Foundation, a non-profit organization dedicated to educational initiatives. The site's primary goal is to inform visitors about the foundation's mission, showcase its projects, and provide a clear call to action for donations and volunteer sign-ups.</p>
+
+                            <h4 class="text-xl font-semibold mt-6 mb-2">Key Features</h4>
+                            <ul class="list-disc list-inside space-y-2">
+                                <li>**Informative Sections:** Dedicated pages for "About Us," "Our Work," and "Contact," providing clear information.</li>
+                                <li>**Mobile-First Design:** The website is fully responsive, ensuring a seamless experience on any device, from smartphones to desktops.</li>
+                                <li>**Interactive Elements:** Features hover effects and smooth scrolling to enhance user engagement.</li>
+                                <li>**Clear Navigation:** A straightforward navigation bar allows users to easily find the information they need.</li>
+                            </ul>
+
+                            <h4 class="text-xl font-semibold mt-6 mb-2">Technical Breakdown</h4>
+                            <p>The site is built with a combination of **Bootstrap, HTML5, and CSS3**. Bootstrap's grid system was used to create the responsive layout, and custom CSS was applied to customize the look and feel to match the foundation's branding. This project focused heavily on front-end development best practices.</p>
+
+                            <h4 class="text-xl font-semibold mt-6 mb-2">Problem & Solution</h4>
+                            <p>The foundation needed a professional online presence to better reach donors and volunteers. The website provides a credible platform to share their mission and progress, helping them expand their impact and connect with the community more effectively.</p>
+
+                            <div class="mt-8 flex flex-col items-center">
+                                <button id="elaborate-prottoy-foundation" class="btn-primary-gradient text-white px-4 py-2 font-semibold rounded-full flex items-center gap-2 mb-4">
+                                    <span id="prottoy-foundation-text">✨ Elaborate on Project Details</span>
+                                    <div id="prottoy-foundation-spinner" class="loading-spinner hidden"></div>
+                                </button>
+                                <p id="prottoy-foundation-gemini-output" class="text-sm italic text-gray-400 mt-2 text-left w-full"></p>
+                            </div>
+                        </div>
+                        <div class="modal-footer border-t border-gray-700">
+                            <button type="button" class="btn-secondary-outline" data-bs-dismiss="modal">Close</button>
+                            <a href="https://prottoyfoundation.wuaze.com/" target="_blank"
+                                class="btn-primary-gradient" onclick="event.stopPropagation();">Visit Project</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Line Coding Modal -->
+            <div class="modal fade" id="lineCodingModal" tabindex="-1" aria-labelledby="lineCodingModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content glass-modal text-[var(--text-color)] border border-gray-700 rounded-xl">
+                        <div class="modal-header border-b border-gray-700">
+                            <h5 class="modal-title font-bold text-[var(--primary-color)]" id="lineCodingModalLabel">Line Coding Visualizer Details</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <h4 class="text-xl font-semibold mb-2">Project Overview</h4>
+                            <p>This educational tool is designed to help students and enthusiasts understand digital encoding schemes. Users can input a binary data stream and see a real-time visualization of how the signal would be transmitted using various methods like NRZ-L, NRZ-I, and Manchester encoding.</p>
+
+                            <h4 class="text-xl font-semibold mt-6 mb-2">Key Features</h4>
+                            <ul class="list-disc list-inside space-y-2">
+                                <li>**Interactive Input:** Users can type a binary string and instantly see the corresponding visual output.</li>
+                                <li>**Multiple Schemes:** The visualizer supports various line coding schemes, allowing for easy comparison.</li>
+                                <li>**Dynamic Canvas:** The visualization is rendered on a HTML Canvas element, providing a smooth and responsive graphical display.</li>
+                                <li>**Clear Explanations:** The tool also includes brief descriptions of each encoding scheme to aid in understanding.</li>
+                            </ul>
+
+                            <h4 class="text-xl font-semibold mt-6 mb-2">Technical Breakdown</h4>
+                            <p>The core logic of the visualizer is built with **vanilla JavaScript**. It dynamically draws the waveforms on a `<canvas>` element using its API. **HTML5 and CSS3** provide the structure and styling for the user interface, including the input fields and control buttons.</p>
+
+                            <h4 class="text-xl font-semibold mt-6 mb-2">Problem & Solution</h4>
+                            <p>Learning about line coding can be challenging with static diagrams. This tool solves that problem by making the process dynamic and interactive, allowing users to experiment with different data inputs and instantly see the results, solidifying their understanding of the concepts.</p>
+
+                            <div class="mt-8 flex flex-col items-center">
+                                <button id="elaborate-line-coding" class="btn-primary-gradient text-white px-4 py-2 font-semibold rounded-full flex items-center gap-2 mb-4">
+                                    <span id="line-coding-text">✨ Elaborate on Project Details</span>
+                                    <div id="line-coding-spinner" class="loading-spinner hidden"></div>
+                                </button>
+                                <p id="line-coding-gemini-output" class="text-sm italic text-gray-400 mt-2 text-left w-full"></p>
+                            </div>
+                        </div>
+                        <div class="modal-footer border-t border-gray-700">
+                            <button type="button" class="btn-secondary-outline" data-bs-dismiss="modal">Close</button>
+                            <a href="https://mossarrafhossainrobin.github.io/Bit-by-Bit-Line-Coding-Visualizer/" target="_blank"
+                                class="btn-primary-gradient" onclick="event.stopPropagation();">Visit Project</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- OneBite Modal -->
+            <div class="modal fade" id="oneBiteModal" tabindex="-1" aria-labelledby="oneBiteModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content glass-modal text-[var(--text-color)] border border-gray-700 rounded-xl">
+                        <div class="modal-header border-b border-gray-700">
+                            <h5 class="modal-title font-bold text-[var(--primary-color)]" id="oneBiteModalLabel">OneBite Details</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <h4 class="text-xl font-semibold mb-2">Project Overview</h4>
+                            <p>OneBite is a modern, minimalist web app concept for a food delivery startup. The primary focus of this project was to create a clean, intuitive, and visually appealing user interface that simplifies the food ordering process for customers.</p>
+                            
+                            <h4 class="text-xl font-semibold mt-6 mb-2">Key Features</h4>
+                            <ul class="list-disc list-inside space-y-2">
+                                <li>**Clean UI:** A minimalist design approach to ensure a distraction-free and easy-to-use interface.</li>
+                                <li>**Responsive Layout:** The design adapts perfectly to different screen sizes, providing a consistent experience on mobile and desktop.</li>
+                                <li>**Intuitive Navigation:** A simple and logical flow from browsing menus to placing an order.</li>
+                                <li>**Placeholder Content:** The site includes mock content for menus and a simulated ordering process to showcase functionality.</li>
+                            </ul>
+
+                            <h4 class="text-xl font-semibold mt-6 mb-2">Technical Breakdown</h4>
+                            <p>This project was built using core web technologies: **HTML5, CSS3, and JavaScript**. The styling uses modern CSS techniques to achieve the minimalist look, and JavaScript was used to handle interactive elements like the order form and simple animations.</p>
+
+                            <h4 class="text-xl font-semibold mt-6 mb-2">Problem & Solution</h4>
+                            <p>Many food delivery apps have cluttered interfaces. OneBite was created to demonstrate how a streamlined and aesthetically pleasing design can improve the user experience, making the process of finding and ordering food more enjoyable and efficient.</p>
+
+                            <div class="mt-8 flex flex-col items-center">
+                                <button id="elaborate-one-bite" class="btn-primary-gradient text-white px-4 py-2 font-semibold rounded-full flex items-center gap-2 mb-4">
+                                    <span id="one-bite-text">✨ Elaborate on Project Details</span>
+                                    <div id="one-bite-spinner" class="loading-spinner hidden"></div>
+                                </button>
+                                <p id="one-bite-gemini-output" class="text-sm italic text-gray-400 mt-2 text-left w-full"></p>
+                            </div>
+                        </div>
+                        <div class="modal-footer border-t border-gray-700">
+                            <button type="button" class="btn-secondary-outline" data-bs-dismiss="modal">Close</button>
+                            <a href="#" target="_blank" class="btn-primary-gradient" onclick="event.stopPropagation();">Visit Project</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <hr class="my-24 h-[2px] border-none bg-gradient-to-r from-transparent via-gray-700 to-transparent fade-in-up">
+
+        <!-- Contact Section -->
+        <section id="contact" class="contact-section py-5 fade-in-up text-center">
+            <h2 class="section-title text-4xl font-bold relative inline-block pb-3 mb-8">📮 Contact</h2>
+            <div class="max-w-xl mx-auto glass-card rounded-3xl p-8 shadow-2xl">
+                <div class="space-y-6">
+                    <!-- Phone Number -->
+                    <div class="flex items-center justify-center gap-4">
+                        <i class="fa-solid fa-phone text-3xl text-[var(--primary-color)]"></i>
+                        <p class="text-xl md:text-2xl font-semibold">+8801312427030</p>
+                    </div>
+
+                    <!-- Social Media Links -->
+                    <div class="flex justify-center space-x-8 text-4xl">
+                        <!-- WhatsApp Link -->
+                        <a href="https://wa.me/8801312427030" target="_blank" aria-label="Chat on WhatsApp" class="hover:text-[var(--primary-color)] transition-colors duration-300">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                        <!-- Email Link -->
+                        <a href="mailto:mossarrafhossainrobin@gmail.com" aria-label="Send an email" class="hover:text-[var(--primary-color)] transition-colors duration-300">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                        <!-- LinkedIn Link -->
+                        <a href="#" target="_blank" aria-label="View LinkedIn Profile" class="hover:text-[var(--primary-color)] transition-colors duration-300">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <hr class="my-24 h-[2px] border-none bg-gradient-to-r from-transparent via-gray-700 to-transparent fade-in-up">
     </div>
-  </section>
-  
-      
-
-    <!-- Skills -->
-    <section id="skills" class="mb-5">
-      <h2>Skills</h2>
-      <ul class="list-inline">
-        <li class="list-inline-item badge bg-primary m-1">HTML</li>
-        <li class="list-inline-item badge bg-success m-1">CSS</li>
-        <li class="list-inline-item badge bg-warning text-dark m-1">JavaScript</li>
-        <li class="list-inline-item badge bg-info text-dark m-1">Java</li>
-        <li class="list-inline-item badge bg-secondary m-1">Google Apps Script</li>
-        <li class="list-inline-item badge bg-dark m-1">MySQL</li>
-        <li class="list-inline-item badge bg-danger m-1">Teaching</li>
-      </ul>
-    </section>
-
-    <!-- Contact -->
-    <section id="contact" class="mb-5">
-      <h2>Contact Me</h2>
-      <p class="contact-info">Phone: <a href="tel:+8801312427030">+8801312427030</a></p>
-      <p class="contact-info">Email: <a href="mailto:rh503648@gmail.com">rh503648@gmail.com</a></p>
-      <form class="mb-4">
-        <div class="mb-3">
-          <input type="text" class="form-control" placeholder="Your Name" required />
-        </div>
-        <div class="mb-3">
-          <input type="email" class="form-control" placeholder="Your Email" required />
-        </div>
-        <div class="mb-3">
-          <textarea class="form-control" rows="4" placeholder="Your Message"></textarea>
-        </div>
-        <button type="submit" class="btn btn-primary">Send Message</button>
-      </form>
-      <div class="social-links d-flex justify-content-center">
-        <a href="https://github.com/mossarrafhossainrobin" target="_blank">
-          <img src="github.png" alt="GitHub">
-        </a>
-        <a href="https://www.linkedin.com/in/mossarraf-hossain-robin-307649256/" target="_blank">
-          <img src="linkedin.png" alt="LinkedIn">
-        </a>
-        <a href="https://www.facebook.com/share/16TPYczuGD/"  target="_blank">
-          <img src="facebook.png" alt="Facebook">
-        </a>
-        <a href="https://wa.me/+8801312427030" target="_blank">
-            <img src="whatsapp.png" alt="WhatsApp">
-          </a>
-        <a href="mailto:rh503648@gmail.com">
-          <img src="gmail.png" alt="Gmail">
-        </a>
-      </div>
-    </section>
 
     <!-- Footer -->
-    <footer class="text-center mt-4">
-      <p>&copy; 2025 Mossarraf Hossain Robin. All rights reserved.</p>
+    <footer class="text-center py-8">
+        <p class="text-gray-400">© 2024 Mossarraf Hossain Robin. All rights reserved.</p>
+        <div class="mt-4 flex justify-center space-x-6 text-2xl">
+            <a href="https://github.com/MossarrafHossainRobin" target="_blank" class="text-gray-400 hover:text-[var(--primary-color)] transition-colors duration-300" aria-label="GitHub Profile">
+                <i class="fab fa-github"></i>
+            </a>
+            <a href="#" target="_blank" class="text-gray-400 hover:text-[var(--primary-color)] transition-colors duration-300" aria-label="LinkedIn Profile">
+                <i class="fab fa-linkedin"></i>
+            </a>
+            <a href="#" target="_blank" class="text-gray-400 hover:text-[var(--primary-color)] transition-colors duration-300" aria-label="Twitter Profile">
+                <i class="fab fa-twitter"></i>
+            </a>
+        </div>
     </footer>
-  </div>
 
-  
+    <!-- Bootstrap JS Bundle (with Popper.js) -->
+    <!-- This script is required for the navbar toggle and modals to work correctly -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Particles.js Script -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
+    <script>
+        // Particles.js configuration
+        particlesJS("particles-js", {
+            "particles": {
+                "number": {
+                    "value": 80,
+                    "density": {
+                        "enable": true,
+                        "value_area": 800
+                    }
+                },
+                "color": {
+                    "value": "#00e5ff"
+                },
+                "shape": {
+                    "type": "circle"
+                },
+                "opacity": {
+                    "value": 0.5,
+                    "random": false,
+                    "anim": {
+                        "enable": false
+                    }
+                },
+                "size": {
+                    "value": 3,
+                    "random": true,
+                    "anim": {
+                        "enable": false
+                    }
+                },
+                "line_linked": {
+                    "enable": true,
+                    "distance": 150,
+                    "color": "#00e5ff",
+                    "opacity": 0.4,
+                    "width": 1
+                },
+                "move": {
+                    "enable": true,
+                    "speed": 6,
+                    "direction": "none",
+                    "random": false,
+                    "straight": false,
+                    "out_mode": "out"
+                }
+            },
+            "interactivity": {
+                "detect_on": "canvas",
+                "events": {
+                    "onhover": {
+                        "enable": true,
+                        "mode": "grab"
+                    },
+                    "onclick": {
+                        "enable": true,
+                        "mode": "push"
+                    },
+                    "resize": true
+                },
+                "modes": {
+                    "grab": {
+                        "distance": 140,
+                        "line_linked": {
+                            "opacity": 1
+                        }
+                    },
+                    "push": {
+                        "particles_nb": 4
+                    }
+                }
+            },
+            "retina_detect": true
+        });
 
+        // Intersection Observer for fade-in animations
+        const faders = document.querySelectorAll('.fade-in-up');
+        const appearOptions = {
+            threshold: 0.2, // Trigger when 20% of the element is visible
+            rootMargin: "0px 0px -100px 0px" // Adjust to trigger a little earlier
+        };
+        const appearOnScroll = new IntersectionObserver(function(entries, appearOnScroll) {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) {
+                    return;
+                } else {
+                    entry.target.classList.add('visible');
+                    appearOnScroll.unobserve(entry.target);
+                }
+            });
+        }, appearOptions);
+
+        faders.forEach(fader => {
+            appearOnScroll.observe(fader);
+        });
+
+        // Scroll listener for sticky navbar
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+
+            // Parallax effect for the hero section
+            const parallaxElements = document.querySelectorAll('[data-parallax-speed]');
+            parallaxElements.forEach(element => {
+                const speed = parseFloat(element.getAttribute('data-parallax-speed'));
+                const yPos = -window.scrollY * speed;
+                element.style.transform = `translateY(${yPos}px)`;
+            });
+        });
+        
+        // Filter button functionality
+        document.querySelectorAll('.filter-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove active class from all buttons
+                document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+                // Add active class to the clicked button
+                button.classList.add('active');
+
+                const filter = button.getAttribute('data-filter');
+                document.querySelectorAll('.project-item').forEach(item => {
+                    if (filter === 'all' || item.getAttribute('data-categories').includes(filter)) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Theme switcher functionality
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const body = document.body;
+        const icon = themeToggleBtn.querySelector('i');
+
+        // Check for saved theme preference or system preference
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) {
+            body.classList.add(savedTheme);
+            updateThemeIcons(savedTheme);
+        } else if (window.matchMedia('(prefers-color-scheme: light)').matches) {
+            body.classList.add('light-mode');
+            updateThemeIcons('light-mode');
+        }
+
+        themeToggleBtn.addEventListener('click', () => {
+            if (body.classList.contains('light-mode')) {
+                body.classList.remove('light-mode');
+                body.classList.add('dark-mode');
+                localStorage.setItem('theme', 'dark-mode');
+                updateThemeIcons('dark-mode');
+            } else {
+                body.classList.remove('dark-mode');
+                body.classList.add('light-mode');
+                localStorage.setItem('theme', 'light-mode');
+                updateThemeIcons('light-mode');
+            }
+        });
+
+        function updateThemeIcons(theme) {
+            if (theme === 'light-mode') {
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+            } else {
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+            }
+        }
+
+
+        // Gemini API Integration - Project Details Elaboration
+        // This function handles the API call and updates the DOM with the generated text.
+        async function generateProjectDetails(prompt, outputElementId, buttonElementId, spinnerElementId) {
+            const outputElement = document.getElementById(outputElementId);
+            const buttonElement = document.getElementById(buttonElementId);
+            const spinnerElement = document.getElementById(spinnerElementId);
+
+            buttonElement.disabled = true;
+            spinnerElement.classList.remove('hidden');
+            outputElement.innerHTML = ''; // Clear previous output
+
+            let retries = 0;
+            const maxRetries = 3;
+            const baseDelay = 1000;
+
+            const chatHistory = [{
+                role: "user",
+                parts: [{
+                    text: prompt
+                }]
+            }];
+            const payload = {
+                contents: chatHistory
+            };
+            const apiKey = "";
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
+
+            while (retries < maxRetries) {
+                try {
+                    const response = await fetch(apiUrl, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(payload)
+                    });
+
+                    if (response.status === 429) {
+                        const delay = baseDelay * Math.pow(2, retries);
+                        retries++;
+                        await new Promise(resolve => setTimeout(resolve, delay));
+                        continue;
+                    }
+
+                    const result = await response.json();
+
+                    if (result.candidates && result.candidates.length > 0 &&
+                        result.candidates[0].content && result.candidates[0].content.parts &&
+                        result.candidates[0].content.parts.length > 0) {
+                        const text = result.candidates[0].content.parts[0].text;
+                        outputElement.innerHTML = `**AI-Generated Elaboration:**<br>${text}`;
+                    } else {
+                        outputElement.innerHTML = `*Error: Could not generate details. Please try again.*`;
+                    }
+                    break;
+
+                } catch (error) {
+                    console.error('API call failed:', error);
+                    outputElement.innerHTML = `*Error: An error occurred. Please try again later.*`;
+                    break;
+                }
+            }
+
+            if (retries === maxRetries) {
+                outputElement.innerHTML = `*Error: Maximum retries reached. Please try again later.*`;
+            }
+
+            buttonElement.disabled = false;
+            spinnerElement.classList.add('hidden');
+        }
+
+        // Attach event listeners to the new buttons
+        document.getElementById('elaborate-elite-footwear').addEventListener('click', () => {
+            const prompt = "Elaborate on this project description: 'Elite Footwear is a dynamic inventory management system designed for a shoe retail business. It provides a comprehensive solution for tracking stock, managing finances, and monitoring business performance in real-time. The system helps the owner make informed decisions by providing clear insights into sales, debts, and profits.' Focus on technical implementation details and business value.";
+            generateProjectDetails(prompt, 'elite-footwear-gemini-output', 'elaborate-elite-footwear', 'elite-footwear-spinner');
+        });
+
+        document.getElementById('elaborate-prottoy-foundation').addEventListener('click', () => {
+            const prompt = "Elaborate on this project description: 'Prottoy Foundation is a modern, responsive website built for a non-profit organization dedicated to educational initiatives. The site's primary goal is to inform visitors about the foundation's mission, showcase its projects, and provide a clear call to action for donations and volunteer sign-ups.' Focus on design choices and social impact.";
+            generateProjectDetails(prompt, 'prottoy-foundation-gemini-output', 'elaborate-prottoy-foundation', 'prottoy-foundation-spinner');
+        });
+
+        document.getElementById('elaborate-line-coding').addEventListener('click', () => {
+            const prompt = "Elaborate on this project description: 'Line Coding Visualizer is an educational tool designed to help students understand digital encoding schemes. Users can input a binary data stream and see a real-time visualization of how the signal would be transmitted using various methods like NRZ-L, NRZ-I, and Manchester encoding.' Focus on the technical challenges of creating the dynamic visualization and the educational benefits.";
+            generateProjectDetails(prompt, 'line-coding-gemini-output', 'elaborate-line-coding', 'line-coding-spinner');
+        });
+
+        document.getElementById('elaborate-one-bite').addEventListener('click', () => {
+            const prompt = "Elaborate on this project description: 'OneBite is a modern, minimalist web app concept for a food delivery startup. The primary focus was to create a clean, intuitive, and visually appealing user interface that simplifies the food ordering process for customers.' Focus on the design philosophy, user experience considerations, and potential business growth.";
+            generateProjectDetails(prompt, 'one-bite-gemini-output', 'elaborate-one-bite', 'one-bite-spinner');
+        });
+    </script>
 </body>
+
 </html>
