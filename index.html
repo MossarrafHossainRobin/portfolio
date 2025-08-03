@@ -8,15 +8,18 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
+        
         :root {
             --primary-color: #00e5ff;
             --secondary-color: #007bff;
-            --dark-bg: #0f101a; /* Slightly darker for more contrast */
+            --dark-bg: #0f101a;
             --card-bg: rgba(255, 255, 255, 0.05);
-            --border-color: rgba(255, 255, 255, 0.15); /* Stronger border */
+            --border-color: rgba(255, 255, 255, 0.15);
             --text-color: #e0e0e0;
             --section-bg: #1e2029;
             --hover-bg: rgba(255, 255, 255, 0.1);
@@ -31,23 +34,122 @@
             --section-bg: #e2e8f0;
             --hover-bg: rgba(0, 0, 0, 0.05);
         }
-        body { font-family: 'Poppins', sans-serif; background-color: var(--dark-bg); color: var(--text-color); transition: background-color 0.5s, color 0.5s; }
+       body {
+            font-family: 'Poppins', 'Inter', sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--text-color);
+            transition: background-color 0.5s, color 0.5s;
+            /* UPDATED: Changed the SVG fill color and size of the background pattern */
+            background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%233a3a5e' fill-opacity='0.4'%3E%3Cpath d='M20 0L0 20L20 40L40 20L20 0Z M20 12L8 20L20 28L32 20L20 12Z'/%3E%3C/g%3E%3C/svg%3E");
+            background-attachment: fixed;
+            padding: 2rem;
+        }
+
         ::-webkit-scrollbar { width: 10px; }
         ::-webkit-scrollbar-track { background: var(--dark-bg); }
         ::-webkit-scrollbar-thumb { background: linear-gradient(45deg, var(--secondary-color), var(--primary-color)); border-radius: 5px; }
         ::-webkit-scrollbar-thumb:hover { background: linear-gradient(45deg, #00c6ff, #007bff); }
-        .sticky-nav { backdrop-filter: blur(10px); background-color: rgba(19, 21, 27, 0.8); /* Slightly transparent */ box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); }
+        .sticky-nav { backdrop-filter: blur(10px); background-color: rgba(19, 21, 27, 0.8); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); }
         .light-mode .sticky-nav { background-color: rgba(235, 237, 239, 0.8); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); }
-        .glass-card { background-color: var(--card-bg); border: 1px solid var(--border-color); backdrop-filter: blur(10px); /* Increased blur */ box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15); /* Enhanced shadow */ }
+        
+        /* Glassmorphism card effect with 3D tilt */
+        .glass-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+            transform-style: preserve-3d;
+            transform: perspective(1000px);
+            transition: transform 0.5s ease-in-out;
+        }
+   
+        /* Gradient for the 'About Me' title */
+        .gradient-text {
+            background-image: linear-gradient(90deg, var(--secondary-color), var(--primary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Custom scrollbar styling */
+        .about-scroll-box::-webkit-scrollbar {
+            width: 8px;
+        }
+        .about-scroll-box::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+        }
+        .about-scroll-box::-webkit-scrollbar-thumb {
+            background-color: var(--primary-color);
+            border-radius: 10px;
+            border: 2px solid var(--card-bg);
+        }
+        .about-scroll-box::-webkit-scrollbar-thumb:hover {
+            background-color: var(--secondary-color);
+        }
+
+        /* Animated glowing border for profile pic */
+        .glowing-border {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 9999px;
+            padding: 8px;
+            background-clip: padding-box;
+            background-origin: border-box;
+            background-image: linear-gradient(to right, var(--card-bg), var(--card-bg)), linear-gradient(45deg, #ff007f, #00ffff, var(--primary-color));
+            animation: glowing-pulse 4s infinite ease-in-out;
+            transition: transform 0.3s ease-in-out;
+        }
+        
+        .glowing-border::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            padding: 2px;
+            background: linear-gradient(45deg, #ff007f, #00ffff, var(--primary-color));
+            -webkit-mask: linear-gradient(white, white) content-box, linear-gradient(white, white);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+        }
+
+        @keyframes glowing-pulse {
+            0% {
+                background-position: 0% 50%;
+                box-shadow: 0 0 15px var(--primary-color);
+            }
+            50% {
+                background-position: 100% 50%;
+                box-shadow: 0 0 25px var(--secondary-color);
+            }
+            100% {
+                background-position: 0% 50%;
+                box-shadow: 0 0 15px var(--primary-color);
+            }
+        }
+
+        .glowing-border:hover {
+            transform: scale(1.05);
+        }
+
+        .profile-pic {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: inherit;
+        }
+        
+        /* Other existing styles */
         .btn-primary-gradient { background: linear-gradient(45deg, var(--secondary-color), var(--primary-color)); transition: all 0.3s ease; }
         .btn-primary-gradient:hover { box-shadow: 0 8px 20px rgba(0, 123, 255, 0.5); transform: translateY(-3px); }
         .btn-secondary-outline { border: 2px solid var(--primary-color); color: var(--primary-color); transition: all 0.3s ease; }
         .btn-secondary-outline:hover { background-color: var(--primary-color); color: var(--dark-bg); box-shadow: 0 8px 20px rgba(0, 229, 255, 0.5); transform: translateY(-3px); }
-        .section-title { position: relative; display: inline-block; padding-bottom: 0.75rem; /* Adjusted for compactness */ margin-bottom: 2.5rem; /* Adjusted for compactness */ }
-        .section-title::after { content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 100px; /* Wider underline */ height: 4px; background: linear-gradient(90deg, transparent, var(--primary-color), transparent); border-radius: 2px; }
-        .project-card { transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1); transform-style: preserve-3d; border-radius: 1.5rem; /* More rounded */ }
+        .section-title { position: relative; display: inline-block; padding-bottom: 0.75rem; margin-bottom: 2.5rem; }
+        .section-title::after { content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 100px; height: 4px; background: linear-gradient(90deg, transparent, var(--primary-color), transparent); border-radius: 2px; }
+        .project-card { transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1); transform-style: preserve-3d; border-radius: 1.5rem; }
         .project-card:hover { transform: translateY(-8px) scale(1.02); box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3); }
-        .project-card .card-img-overlay { opacity: 0; background: rgba(0, 0, 0, 0.8); /* Darker overlay */ transition: opacity 0.4s ease-in-out; border-radius: 0.75rem; }
+        .project-card .card-img-overlay { opacity: 0; background: rgba(0, 0, 0, 0.8); transition: opacity 0.4s ease-in-out; border-radius: 0.75rem; }
         .project-card:hover .card-img-overlay { opacity: 1; }
         #particles-js { position: absolute; width: 100%; height: 100%; top: 0; left: 0; z-index: -1; }
         .fade-in-up { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
@@ -57,23 +159,21 @@
         .skill-bar.filled { width: var(--skill-level); }
         .mobile-menu-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.7); backdrop-filter: blur(5px); z-index: 40; display: none; }
         .mobile-menu-overlay.open { display: block; }
-        .mobile-menu { position: fixed; top: 0; right: -300px; /* Off-screen */ width: 280px; height: 100%; background-color: var(--dark-bg); z-index: 50; padding: 2rem; box-shadow: -5px 0 15px rgba(0, 0, 0, 0.4); transition: right 0.4s ease-in-out; display: flex; flex-direction: column; }
+        .mobile-menu { position: fixed; top: 0; right: -300px; width: 280px; height: 100%; background-color: var(--dark-bg); z-index: 50; padding: 2rem; box-shadow: -5px 0 15px rgba(0, 0, 0, 0.4); transition: right 0.4s ease-in-out; display: flex; flex-direction: column; }
         .mobile-menu.open { right: 0; }
         .mobile-menu .nav-link { display: block; padding: 0.75rem 1rem; margin-bottom: 0.5rem; border-radius: 0.5rem; transition: background-color 0.3s; }
         .mobile-menu .nav-link:hover { background-color: var(--hover-bg); }
         .close-menu-btn { position: absolute; top: 1rem; right: 1rem; font-size: 2rem; color: var(--text-color); }
         .close-menu-btn:hover { color: var(--primary-color); }
-
-
-          .nav-link {
-        position: relative;
-        overflow: hidden; /* Crucial to hide the bar when it's outside */
-        transform: translateY(0); /* Initial state for lift effect */
-        transition: all 0.3s ease-in-out; /* Smooth transitions for all properties */
-        display: inline-flex; /* Ensures content and icon are flexed */
-        align-items: center; /* Vertically centers icon and text */
-        z-index: 1; /* Ensure link content is above the pseudo-element */
-    }
+        .nav-link {
+            position: relative;
+            overflow: hidden;
+            transform: translateY(0);
+            transition: all 0.3s ease-in-out;
+            display: inline-flex;
+            align-items: center;
+            z-index: 1;
+        }
     </style>
 </head>
 
@@ -127,7 +227,7 @@
         <a href="#skills" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white transition-colors duration-200">Skills</a>
         <a href="#projects" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white transition-colors duration-200">Projects</a>
         <a href="#contact" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white transition-colors duration-200">Contact</a>
-        </div>
+    </div>
 </div>
     <div id="mobile-menu-overlay" class="mobile-menu-overlay"></div>
     <div id="mobile-menu" class="mobile-menu">
@@ -146,7 +246,7 @@
             <div id="particles-js"></div>
             <div class="relative z-10 p-4">
                 <h1 class="text-4xl md:text-6xl font-bold tracking-tight transform-gpu transition-transform duration-500">Hello, I'm <span class="text-[var(--primary-color)]">Mossarraf Hossain Robin</span></h1>
-                <p class="text-lg md:text-xl leading-snug mt-4 font-['Space Mono'] text-gray-300 transform-gpu transition-transform duration-500">A passionate web developer specializing in building dynamic and responsive web applications.</p>
+                <p class="text-lg md:text-xl leading-snug mt-4 font-['Space Mono'] text-gray-300 transform-gpu transition-transform duration-500">  Frontend Developer | Cybersecurity & Networking Aficionado </p>
                 <div class="mt-8 flex justify-center gap-4">
                     <a href="#projects" class="btn-primary-gradient text-white px-6 py-3 font-semibold rounded-full shadow-lg hover:translate-y-[-3px] hover:shadow-xl">View Projects</a>
                     <a href="#contact" class="btn-secondary-outline px-6 py-3 font-semibold rounded-full hover:translate-y-[-3px]">Get in Touch</a>
@@ -154,33 +254,51 @@
             </div>
         </header>
 
-  
- <section id="about" class="about-section text-center py-5 fade-in-up">
-    <h2 class="section-title text-4xl font-bold relative inline-block">About Me</h2>
-    <!-- The main container is now a single column on all screen sizes -->
-    <div class="flex flex-col items-center gap-12 mt-12">
-        <!-- The image container now has a larger, responsive width -->
-        <div class="w-48 h-48 flex justify-center fade-in-up">
-            <!-- The image size and border stroke are adjusted -->
-            <img src="https://placehold.co/192x192/1e1e1e/f8f9fa?text=Your+Photo" alt="Mossarraf Hossain Robin" class="rounded-full shadow-lg border-2 border-[var(--primary-color)] hover:scale-105 transition-transform duration-300">
-        </div>
-        <!-- The text is now centered to match the new layout -->
-        <div class="w-full text-center fade-in-up">
-            <!-- New title added here -->
-            <h3 class="text-xl font-semibold mb-4 text-[var(--primary-color)]">
-                Frontend Developer | Cybersecurity & Networking Aficionado |
-            </h3>
-            <p class="text-lg leading-relaxed mb-4">
-                Hello! My name is Mossarraf Hossain Robin, and I am a web developer with a passion for creating beautiful and functional web experiences. I love tackling complex problems and building intuitive solutions. My journey in web development began with a fascination for how technology can solve real-world problems. I thrive on bringing ideas to life through code.
-            </p>
-            <p class="text-lg leading-relaxed">
-                Beyond coding, I enjoy learning new things, exploring creative solutions, and contributing to open-source projects. I'm committed to continuous growth and delivering high-quality, impactful web solutions.
-            </p>
-        </div>
-    </div>
-</section>
+        <!-- The advanced About Me section has been integrated here -->
+        <section id="about" class="about-section py-20 px-4">
+            <!-- The main container acting as a modern glass card with a 3D effect -->
+            <div class="max-w-9xl mx-auto p-8 rounded-3xl glass-card">
+                <h2 class="section-title text-center text-5xl font-extrabold relative inline-block mb-16 gradient-text">About Me</h2>
 
-        <hr class="my-24 h-[2px] border-none bg-gradient-to-r from-transparent via-gray-700 to-transparent fade-in-up">
+                <!-- Split layout for better visual separation -->
+                <div class="flex flex-col md:flex-row items-start md:items-stretch gap-12">
+                    <!-- Left side: Profile Info -->
+                    <div class="w-full md:w-1/3 flex flex-col items-center text-center fade-in-up">
+                        <!-- Glowing Profile Picture -->
+                        <div class="w-48 h-48 glowing-border mb-6">
+                            <img src="code.jfif" alt="Mossarraf Hossain Robin" class="profile-pic">
+                        </div>
+                        <!-- Title -->
+                        <h3 class="text-xl font-semibold mb-2 text-[var(--secondary-color)]">
+                            Frontend Developer
+                        </h3>
+                        <p class="text-md text-[var(--secondary-text-color)]">
+                            Cybersecurity & Networking Aficionado
+                        </p>
+                    </div>
+                    
+                    <!-- Right side: The new scrollable box for the bio text -->
+                    <div class="w-full md:w-2/3">
+                        <div class="about-scroll-box h-96 overflow-y-auto text-left p-6 rounded-lg bg-[rgba(0,0,0,0.1)] transition-colors duration-300 hover:bg-[rgba(0,0,0,0.2)]">
+                            <p class="text-lg leading-relaxed mb-4 text-[var(--secondary-text-color)]">
+                                Hello! My name is Mossarraf Hossain Robin, and I am a web developer with a passion for creating beautiful and functional web experiences. I love tackling complex problems and building intuitive solutions. My journey in web development began with a fascination for how technology can solve real-world problems. I thrive on bringing ideas to life through code.
+                            </p>
+                            <p class="text-lg leading-relaxed mb-4 text-[var(--secondary-text-color)]">
+                                Beyond coding, I enjoy learning new things, exploring creative solutions, and contributing to open-source projects. I'm committed to continuous growth and delivering high-quality, impactful web solutions. I have a deep interest in cybersecurity and networking, which allows me to build not only visually appealing but also secure and robust applications.
+                            </p>
+                            <p class="text-lg leading-relaxed mb-4 text-[var(--secondary-text-color)]">
+                                In my daily work, I focus on creating seamless user interfaces and implementing best practices for performance and accessibility. I'm always looking for new technologies and frameworks to expand my skill set and stay at the forefront of the industry.
+                            </p>
+                            <p class="text-lg leading-relaxed mb-4 text-[var(--secondary-text-color)]">
+                                When I'm not coding, you can find me exploring new technologies, participating in coding challenges, or delving into the latest trends in network security. This blend of creative and technical pursuits keeps me motivated and ready for any challenge.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+      
 
         <section id="skills" class="skills-section py-5 fade-in-up">
             <h2 class="section-title text-center text-4xl font-bold relative inline-block">Skills</h2>
@@ -297,7 +415,7 @@
                 <div class="project-item block fade-in-up" data-categories="web-app">
                     <div class="project-card glass-card rounded-3xl overflow-hidden shadow-lg h-full flex flex-col group">
                         <div class="relative">
-                            <img src="https://placehold.co/600x400/1e1e1e/f8f9fa?text=Elite+Footwear" alt="Elite Footwear Project" class="w-full h-auto object-cover rounded-t-2xl">
+                            <img src="elite-front.png" alt="Elite Footwear Project" class="w-full h-auto object-cover rounded-t-2xl">
                             <div class="card-img-overlay absolute inset-0 rounded-2xl flex items-center justify-center p-4">
                                 <div class="text-center">
                                     <h6 class="text-white text-lg font-semibold mb-3">Tech Stack</h6>
@@ -319,7 +437,7 @@
                             <p class="text-sm text-gray-400 flex-grow mb-4">A dynamic inventory management system with profit/loss, debt, and tracking features built using JavaScript and Web technologies.</p>
                             <div class="flex gap-2 mt-auto">
                                 <a href="https://github.com/MossarrafHossainRobin/elitefootwear" target="_blank" class="btn-primary-gradient text-white px-4 py-2 text-sm font-semibold rounded-full flex-grow text-center" aria-label="Visit Elite Footwear Project Repository">🔗 Repo</a>
-                                <a href="https://your-elitefootwear-site.com" target="_blank" class="btn-secondary-outline px-4 py-2 text-sm font-semibold rounded-full flex-grow text-center" aria-label="Visit Elite Footwear Site">🚀 Live</a>
+                                <a href="https://elitefootwear.wuaze.com/" target="_blank" class="btn-secondary-outline px-4 py-2 text-sm font-semibold rounded-full flex-grow text-center" aria-label="Visit Elite Footwear Site">Visit Site</a>
                             </div>
                         </div>
                     </div>
@@ -349,7 +467,7 @@
                             <p class="text-sm text-gray-400 flex-grow mb-4">A visually appealing and responsive website for a non-profit educational initiative using Bootstrap, HTML, and CSS.</p>
                             <div class="flex gap-2 mt-auto">
                                 <a href="https://github.com/MossarrafHossainRobin/prottoy-foundation" target="_blank" class="btn-primary-gradient text-white px-4 py-2 text-sm font-semibold rounded-full flex-grow text-center" aria-label="Visit Prottoy Foundation Project Repository">🔗 Repo</a>
-                                <a href="https://your-prottoyfoundation-site.com" target="_blank" class="btn-secondary-outline px-4 py-2 text-sm font-semibold rounded-full flex-grow text-center" aria-label="Visit Prottoy Foundation Site">🚀 Live</a>
+                                <a href="https://prottoyfoundation.wuaze.com/" target="_blank" class="btn-secondary-outline px-4 py-2 text-sm font-semibold rounded-full flex-grow text-center" aria-label="Visit Prottoy Foundation Site">Visit Site</a>
                             </div>
                         </div>
                     </div>
@@ -379,7 +497,7 @@
                             <p class="text-sm text-gray-400 flex-grow mb-4">A tool for visualizing digital encoding schemes such as NRZ, Manchester, etc., for educational purposes.</p>
                             <div class="flex gap-2 mt-auto">
                                 <a href="https://github.com/MossarrafHossainRobin/Bit-by-Bit-Line-Coding-Visualizer" target="_blank" class="btn-primary-gradient text-white px-4 py-2 text-sm font-semibold rounded-full flex-grow text-center" aria-label="Visit Line Coding Visualizer Project Repository">🔗 Repo</a>
-                                <a href="https://your-linecoding-site.com" target="_blank" class="btn-secondary-outline px-4 py-2 text-sm font-semibold rounded-full flex-grow text-center" aria-label="Visit Line Coding Visualizer Site">🚀 Live</a>
+                                <a href="https://mossarrafhossainrobin.github.io/Bit-by-Bit-Line-Coding-Visualizer/" target="_blank" class="btn-secondary-outline px-4 py-2 text-sm font-semibold rounded-full flex-grow text-center" aria-label="Visit Line Coding Visualizer Site">Visit Site</a>
                             </div>
                         </div>
                     </div>
@@ -409,7 +527,7 @@
                             <p class="text-sm text-gray-400 flex-grow mb-4">A modern, minimalist website built for a food delivery startup. Clean UI with responsive layout.</p>
                             <div class="flex gap-2 mt-auto">
                                 <a href="#" target="_blank" class="btn-primary-gradient text-white px-4 py-2 text-sm font-semibold rounded-full flex-grow text-center" aria-label="Visit OneBite Project Repository">🔗 Repo</a>
-                                <a href="https://your-onebite-site.com" target="_blank" class="btn-secondary-outline px-4 py-2 text-sm font-semibold rounded-full flex-grow text-center" aria-label="Visit OneBite Site">🚀 Live</a>
+                                <a href="https://onebite.wuaze.com" target="_blank" class="btn-secondary-outline px-4 py-2 text-sm font-semibold rounded-full flex-grow text-center" aria-label="Visit OneBite Site">Visit Site</a>
                             </div>
                         </div>
                     </div>
@@ -418,7 +536,8 @@
                 </div>
         </section>
 
-
+<div class="badge-base LI-profile-badge" data-locale="en_US" data-size="medium" data-theme="dark" data-type="VERTICAL" data-vanity="mossarrafhossainrobin" data-version="v1"><a class="badge-base__link LI-simple-link" href="https://bd.linkedin.com/in/mossarrafhossainrobin?trk=profile-badge">Mossarraf Hossain Robin</a></div>
+              
 
            <h2 class="section-title text-4xl font-bold text-left mb-8 ml-[max(calc(50%_-_theme(maxWidth.screen-2xl)/2),_theme(spacing.8))]">Contact Me</h2>
 <section id="contact" class="contact-section py-5 fade-in-up text-center">
@@ -429,7 +548,7 @@
         
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 text-left mb-8">
             <div class="flex items-center gap-4">
-                <i class="fa-solid fa-phone text-3xl text-[var(--primary-color)]"></i>
+                <i class="fa-solid fa-phone text-2xl text-[var(--primary-color)]"></i>
                 <div>
                     <p class="text-sm text-gray-400">Call Me</p>
                     <p class="text-xl font-semibold">+8801312427030</p>
@@ -437,7 +556,7 @@
             </div>
             
             <div class="flex items-center gap-4 lg:col-start-2 lg:col-span-2 lg:justify-center">
-                <i class="fa-solid fa-envelope text-3xl text-[var(--primary-color)]"></i>
+                <i class="fa-solid fa-envelope text-2xl text-[var(--primary-color)]"></i>
                 <div>
                     <p class="text-sm text-gray-400 hidden lg:block">Email Me</p>
                     <a href="mailto:mossarrafhossainrobin@gmail.com" class="text-xl font-semibold hover:text-[var(--primary-color)] transition-colors duration-300">mossarrafhossainrobin@gmail.com</a>
@@ -445,7 +564,7 @@
             </div>
             
             <div class="flex items-center gap-4">
-                <i class="fa-solid fa-location-dot text-3xl text-[var(--primary-color)]"></i>
+                <i class="fa-solid fa-location-dot text-2xl text-[var(--primary-color)]"></i>
                 <div>
                     <p class="text-sm text-gray-400">Location</p>
                     <p class="text-xl font-semibold">Dhaka, Bangladesh</p>
@@ -481,6 +600,7 @@
         <p class="text-gray-400">© 2025 Mossarraf Hossain Robin. All rights reserved.</p>
     
     </footer>
+    <script src="https://platform.linkedin.com/badges/js/profile.js" async defer type="text/javascript"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
     <script>
